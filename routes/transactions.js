@@ -1,9 +1,7 @@
-// routes/transactions.js
 const express = require('express');
 const router = express.Router();
 const Transaction = require('../models/Transaction');
 
-// Criar uma nova transação
 router.post('/', async (req, res) => {
   try {
     const { type, amount, description } = req.body;
@@ -15,7 +13,6 @@ router.post('/', async (req, res) => {
   }
 });
 
-// Buscar todas as transações
 router.get('/', async (req, res) => {
   try {
     const transactions = await Transaction.find();
@@ -25,7 +22,6 @@ router.get('/', async (req, res) => {
   }
 });
 
-// Atualizar uma transação
 router.put('/:id', async (req, res) => {
   try {
     const updatedTransaction = await Transaction.findByIdAndUpdate(req.params.id, req.body, { new: true });
@@ -35,7 +31,6 @@ router.put('/:id', async (req, res) => {
   }
 });
 
-// Deletar uma transação
 router.delete('/:id', async (req, res) => {
   try {
     await Transaction.findByIdAndDelete(req.params.id);
